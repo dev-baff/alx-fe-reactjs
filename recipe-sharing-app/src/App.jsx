@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 function App() {
@@ -14,7 +15,16 @@ function App() {
             element={
               <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
                 <h1>Recipe Sharing Application</h1>
-                <AddRecipeForm />
+                
+                <div style={{ marginBottom: '30px' }}>
+                  <AddRecipeForm />
+                </div>
+
+                <div style={{ marginBottom: '20px' }}>
+                  <h2>Search Recipes</h2>
+                  <SearchBar />
+                </div>
+
                 <RecipeList />
               </div>
             } 

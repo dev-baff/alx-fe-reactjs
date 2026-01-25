@@ -5,6 +5,7 @@ const AddRecipeForm = () => {
   const addRecipe = useRecipeStore((state) => state.addRecipe);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [ingredients, setIngredients] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,10 +14,12 @@ const AddRecipeForm = () => {
       addRecipe({ 
         id: Date.now(), 
         title, 
-        description 
+        description,
+        ingredients: ingredients.split(',').map(ing => ing.trim()).filter(ing => ing)
       });
       setTitle('');
       setDescription('');
+      setIngredients('');
     }
   };
 
@@ -41,6 +44,16 @@ const AddRecipeForm = () => {
           style={{ width: '100%', padding: '8px', minHeight: '100px' }}
           required
         />
+      </div>
+      <div style={{ marginBottom: '10px' }}>
+        <input
+          type="text"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          placeholder="Ingredients (comma-separated)"
+          style={{ width: '100%', padding: '8px' }}
+        />
+        <small style={{ color: '#666' }}>Example: flour, sugar, eggs, butter</small>
       </div>
       <button 
         type="submit"
